@@ -1,14 +1,19 @@
 import GreenBox from '../components/GreenBox.jsx';
-import portrait from '../assets/images/portrait.jpg'; // Adjust path to match your file
+import portrait from '../assets/images/portrait.jpg';
+import { Outlet } from 'react-router-dom';
+import './HomePage.css';
 
 function HomePage() {
   return (
-    <section className="home">
+  <>
+    <Outlet context={{ topbox: null }} /> 
+      <section className="home">
         <GreenBox to="/about" className="homebox">
             <img className="photo" src={portrait} />
         </GreenBox>
-    </section>
-  );
+      </section>
+    </>
+  )
 }
 
 export default HomePage;

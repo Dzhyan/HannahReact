@@ -1,0 +1,27 @@
+/* ******************************************* BLOG */ 
+.blogcard {
+  display: flex;
+  flex-direction: column;
+}
+
+.blog .image,
+.blog .image .photo {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+  flex: none;
+}
+
+.blog .text {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.blog .text .link {
+  align-self: flex-end;
+}
+.blog h2 {
+  margin: 1rem 0 0 0;
+}

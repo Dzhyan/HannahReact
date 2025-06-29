@@ -1,7 +1,10 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, useOutletContext } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import './Layout.css'
 
 function Layout() {
+  const { topbox } = useOutletContext() || {};
+
   return (
     <>
       <header className="artistheader">
@@ -9,7 +12,7 @@ function Layout() {
         <h2 className="artistbanner">ARTIST</h2>
       </header>
 
-      <nav className="navdesktop">
+      <nav className="nav">
         <ul>
           <li><Link to="/">HOME</Link></li>
           <li><Link to="/about">ABOUT</Link></li>
@@ -19,8 +22,14 @@ function Layout() {
         </ul>
       </nav>
 
+      <div className="topbox">
+        {topbox}
+      </div>
+
       <main>
-        <Outlet />
+        <div className="contentbox">
+          <Outlet context={{}} />
+        </div>
       </main>
 
       <footer className="footer">

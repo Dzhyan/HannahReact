@@ -3,6 +3,8 @@ import WorkNav from '../components/WorkNav';
 import WorkCard from '../components/WorkCard';
 import VideoPage from '../pages/VideoPage';
 import projects from '../data/projects';
+import { Outlet } from 'react-router-dom';
+import './WorkPage.css';
 
 
 
@@ -15,15 +17,14 @@ function WorkPage() {
     setSelectedCategory(category);
   };
 
-  // If "videos" is selected, show VideoPage and nothing else in <main>
   if (selectedCategory === "videos") {
     return (
-      <section className="work-section">
-        <WorkNav onCategorySelect={handleCategorySelect} selectedCategory={selectedCategory} />
-        <main>
-          <VideoPage />
-        </main>
-      </section>
+      <>
+        <Outlet context={{
+          topbox: <WorkNav onCategorySelect={handleCategorySelect} selectedCategory={selectedCategory} />
+        }} />
+        <VideoPage />
+      </>
     );
   }
 
@@ -32,18 +33,17 @@ function WorkPage() {
     : projects.filter(project => project.category === selectedCategory);
 
   return (
-    <section className="work-section">
-      <WorkNav onCategorySelect={handleCategorySelect} selectedCategory={selectedCategory} />
+    <>
+    <Outlet context={{topbox: <WorkNav onCategorySelect={handleCategorySelect} selectedCategory={selectedCategory} />}} />
       <div className="work">
         {filteredProjects.map((project) => (
-          <WorkCard
-            key={project.link}
-            project={project}
-          />
+          <WorkCard key={project.link} project={project} />
         ))}
       </div>
-    </section>
+    </>
   );
 }
 
 export default WorkPage;
+
+
